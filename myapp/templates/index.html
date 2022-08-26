@@ -5,7 +5,7 @@
     </head>
     <body>
         {% for product in products %}
-        <a href="{% url 'product' product.id %}">
+        <a href="{% url 'myapp:product' product.id %}">
         {{product.name}} => {{product.price}} => {{product.description}}<br/>
         </a>
         {% endfor %}
