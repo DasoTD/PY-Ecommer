@@ -1,9 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
         <title>title</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}"
     </head>
     <body>
+        <nav>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <img class="h-8 w-8" src="{% static 'images/siteLogo.png' %}" alt="">
+                            <span> Buy & Sell </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
         {% for product in products %}
         <a href="{% url 'myapp:product' product.id %}">
         {{product.name}} => {{product.price}} => {{product.description}}<br/>
