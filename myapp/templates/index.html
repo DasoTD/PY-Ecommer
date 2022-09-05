@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
     {% block content %}
-        
+        <!-- sites hero starts here -->
+    <main class="mt-10 mx-auto">
+        <div>
+            <h1>
+                <span>Premium products</span>
+                <span>Non-Premium products</span>
+            </h1>
+        </div>
+    </main>
+    <!-- site hero ends here -->
         {% for product in products %}
         <a href="{% url 'myapp:product' product.id %}">
         {{product.name}} => {{product.price}} => {{product.description}} => <img src="{{product.image.url}}" /><br/>
