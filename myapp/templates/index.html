@@ -6,13 +6,18 @@
         <link rel="stylesheet" href="{% static 'myapp/styles.css' %}"
     </head>
     <body>
-        <nav>
-            <div>
-                <div>
-                    <div>
-                        <div>
-                            <img class="h-8 w-8" src="{% static 'myapp/images/siteLogo.png' %}" alt="">
-                            <span class="text-gray-500 text-lg"> Buy&Sell </span>
+        <nav class="bg-white shadow-lg">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex justify-between">
+                    <div class="flex px-2 py-4 space-x-7">
+                        <div class="flex">
+                            <a href=""><img class="h-8 w-8" src="{% static 'myapp/images/siteLogo.png' %}" alt=""></a>
+                            <span class="text-gray-500 font-semibold text-lg"> Buy&Sell </span>
+                        </div>
+                        <div class="items-center space-x-1">
+                            <a href="#" class="py-4 px-2 text-gray-500 font-semibold border-b-4 border-green-500">Home</a>
+                            <a href="#" class="py-4 px-2 text-gray-500 font-semibold">About</a>
+                            <a href="#" class="py-4 px-2 text-gray-500 font-semibold">Contact</a>
                         </div>
                     </div>
                 </div>
