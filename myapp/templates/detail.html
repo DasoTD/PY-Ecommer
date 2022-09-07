@@ -2,5 +2,13 @@
 {% block content %}
 
     
-       this is a detail page page for: <h1>{{product.name}}</h1>  <h1>{{product.price}}</h1><h1>{{product.description}}</h1> <h1><img src="{{product.image.url}}" ></h1>
+       <div class="flex pt-10 px-6">
+              <img class="w-1/3" src="{{product.image.url}}" >
+              <div class="w-2/3 px-6 ">
+                     <div class="mb-2 font-bold">{{product.name}}</div>  
+                     <div class="mb-2 text-green-500 font-bold"> $ {{product.price}}</div>
+                     <div>{{product.description}} </div>
+              </div>
+       </div>
+       
 {% endblock %}
