@@ -30,7 +30,7 @@
                 <div class="font-bold text-xl text-green-500 mb-2">
                     $ {{product.price}}
                 </div>
-                
+                <div class=" font-bold mb-2 ">Posted By:<span class="text-indigo-500 ml-5"><a class="text-indigo-500 href="{% url 'users:sellerprofile' product.seller_name.id %}">{{product.seller_name}}</a> </span></div>
                     <p class="text-gray-700 text-base">{{product.description}}</p>
             </div>
         </div>

@@ -8,6 +8,8 @@
                      <div class="mb-2 font-bold">{{product.name}}</div>  
                      <div class="mb-2 text-green-500 font-bold"> $ {{product.price}}</div>
                      <div class="text-gray-700">{{product.description}} </div>
+                     <div class="text-gray-700">Posted by:<a class="ml-5 font-bold text-indigo-500" href="{% url 'users:sellerprofile' product.seller_name.id %}">{{product.seller_name}} </a> </div>
+                     <div class="text-gray-700">Contact: {{product.seller_name.profile.contact_number}} </div>
               </div>
        </div>
        
