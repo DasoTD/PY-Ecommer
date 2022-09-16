@@ -1,3 +1,4 @@
+from json import load
 from django.shortcuts import render, redirect
 from .forms import NewUserForm
 from django.contrib.auth.decorators import login_required
@@ -31,6 +32,7 @@ def create_profile(request):
         profile.save()
     return render(request, 'users/createprofile.html')
 
+@login_required
 def seller_profile(request, id):
     seller = User.objects.get(id=id)
     context ={
