@@ -5,8 +5,8 @@
 
     <!-- <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-5"> -->
         <!--  -->
-    {% for product in products %}
-    <a href="{% url 'myapp:product' product.id %}">
+{% for product in products %}
+    <!-- <a href="{% url 'myapp:product' product.id %}"> -->
     <div class="itemcontainer flex  shadow-lg m-10 p-10">
         <span class="w-1/5">
             <img class="w-40 h-40" src="{{product.image.url}}">
@@ -19,8 +19,11 @@
             <div>
                 {{product.description}}</div>
         </span>
-        <span class="w-1/5">
-            <a href="">Edit</a>
+        <span class="w-1/5 my-10 mx-10">
+            <a class="bg-green-500 text-white font-bold px-5 py-2" href="{% url 'myapp:updateproduct' product.id %}">Edit</a>
+        </span>
+        <span class="w-1/5 my-10 mx-10">
+            <a class="bg-red-500 text-white font-bold px-5 py-2" href="{% url 'myapp:deleteproduct' product.id %}">Delete</a>
         </span>
     </div>
     <!-- <a href="{% url 'myapp:product' product.id %}">
@@ -37,8 +40,8 @@
                 <p class="text-gray-700 text-base">{{product.description}}</p>
         </div>
     </div> --->
-    </a> 
-    {% endfor %}
+    <!-- </a>  -->
+{% endfor %}
     <!-- </div> -->
 
 
