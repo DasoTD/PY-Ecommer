@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Product
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView
 # Create your views here.
 
 def index(request):
@@ -15,12 +16,25 @@ def Products(request):
     }
     return render(request, 'index.html', context)
 
+# class based list view
+class ProductListView(ListView):
+    model= Product
+    template_name= 'index.html'
+    context_object_name= 'products'
+
 def product_detail(request, id):
     product = Product.objects.get(id=id)
     context = {
         'product': product
     }
     return render(request, 'detail.html',  context) 
+
+    # class based detail view
+class ProductDetailView(DetailView):
+    model= Product
+    template_name= 'detail.html'
+    context_object_name= 'product'
+
 
 @login_required
 def add_product(request):
