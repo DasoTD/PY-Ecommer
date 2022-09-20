@@ -1,9 +1,11 @@
+from distutils.command.upload import upload
 from unicodedata import name
 from django.shortcuts import render, redirect
 from .models import Product
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
 # Create your views here.
 
 def index(request):
@@ -49,6 +51,10 @@ def add_product(request):
         return redirect('/')
     else:
         return render(request, 'addproduct.html')
+# class based createView
+class ProductCreateView(CreateView):
+    model= Product
+    fields= ['name', 'price', 'description', 'image', 'seller_name']
 
 def update_product(request, id):
     product = Product.objects.get(id=id)
