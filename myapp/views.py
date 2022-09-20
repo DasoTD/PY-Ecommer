@@ -5,7 +5,8 @@ from .models import Product
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 # Create your views here.
 
 def index(request):
@@ -77,6 +78,11 @@ def update_product(request, id):
     }
     return render(request, 'updateproduct.html', context)
 
+class ProductUpdateView(UpdateView):
+    model= Product
+    fields= ['name', 'price', 'description', 'image', 'seller_name']
+    template_name_suffix=  '_update_form'
+
 def delete_product(request, id):
     product = Product.objects.get(id=id);
     context = {
@@ -86,6 +92,11 @@ def delete_product(request, id):
         product.delete()
         return redirect('/products')
     return render(request, 'delete.html', context)
+class ProductDelete(DeleteView):
+    model= Product
+    success_url= reverse_lazy('myapp:products')
+
+
 def my_listing(request):
     products = Product.objects.filter(seller_name=request.user)
     context = {
