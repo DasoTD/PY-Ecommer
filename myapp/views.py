@@ -7,15 +7,26 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator, PageNotAnInteger
 # Create your views here.
 
 def index(request):
     return HttpResponse("course")
 
 def Products(request):
-    products = Product.objects.all()
+    page_obj = products = Product.objects.all()
+
+    product_name = request.GET.get('product_name')
+    if product_name != '' and product_name is not None:
+        page_obj = products.filter(name__icontains=product_name)
+    paginator = Paginator(page_obj,3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    # context = {
+    #     'products': products
+    # }
     context = {
-        'products': products
+        'page_obj' : page_obj
     }
     return render(request, 'index.html', context)
 
@@ -24,6 +35,7 @@ class ProductListView(ListView):
     model= Product
     template_name= 'index.html'
     context_object_name= 'products'
+    paginate_by= 3
 
 def product_detail(request, id):
     product = Product.objects.get(id=id)
