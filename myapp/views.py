@@ -6,8 +6,13 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.core.paginator import Paginator, PageNotAnInteger
+from django.http.response import HttpResponseNotFound, JsonResponse
+from django.shortcuts import get_object_or_404
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+import json
 # Create your views here.
 
 def index(request):
@@ -49,7 +54,13 @@ class ProductDetailView(DetailView):
     model= Product
     template_name= 'detail.html'
     context_object_name= 'product'
+    pk_url_kwarg = 'pk'
 
+    def get_context_data(self, **kwargs) :
+        context = super(ProductDetailView,self).get_context_data(**kwargs)
+        # return super().get_context_data(**kwargs)
+        context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE_KEY
+        return context
 
 @login_required
 def add_product(request):
