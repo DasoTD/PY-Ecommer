@@ -10,7 +10,11 @@
                      <div class="text-gray-700">{{product.description}} </div>
                      <div class="text-gray-700">Posted by:<a class="ml-5 font-bold text-indigo-500" href="{% url 'users:sellerprofile' product.seller_name.id %}">{{product.seller_name}} </a> </div>
                      <div class="text-gray-700">Contact: {{product.seller_name.profile.contact_number}} </div>
+              <div>
+                     <button class="bg-green-500 text-white px-3 py-2 mt-5" id="checkout">checkout</button>
               </div>
+              </div>
+              
        </div>
        
 {% endblock %}

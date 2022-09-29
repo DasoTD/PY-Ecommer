@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
@@ -17,6 +18,14 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse_lazy('myapp:products')
 
+class OrderDetail(models.Model):
+    customer_username = models.CharField(max_length=200)
+    product = models.ForeignKey(to='Product', on_delete=models.PROTECT)
+    amount = models.IntegerField()
+    stripe_payment = models.CharField(max_length=200)
+    has_paid = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now_add=True)
 # from django.contrib.auth.models import User
 # # Create your models here.
 # class Profile(models.Model):
