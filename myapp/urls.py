@@ -1,3 +1,4 @@
+from distutils.command import check
 from django.urls import path
 from . import views
 
@@ -12,4 +13,7 @@ urlpatterns = [
     # path('product/delete/<int:id>', view=views.delete_product, name='deleteproduct'),
     path('product/delete/<int:pk>', view=views.ProductDelete.as_view(), name='deleteproduct'),
     path('product/mylisting/', view=views.my_listing, name='mylisting'),
+    path('success/', view= views.PaymentSuccessView.as_view() , name='success'),
+    path('failed/', view=views.PaymentFailedView.as_view(), name='failed'),
+    path('api-checkout-session/<id>', view= views.create_checkout_sesseion, name='api_checkout_session'),
 ] 

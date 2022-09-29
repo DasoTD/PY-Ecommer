@@ -129,3 +129,4 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 LOGIN_REDIRECT_URL = 'myapp:products'
 LOGIN_URL = 'users:login'
 STRIPE_PUBLISHABLE_KEY = 'ddd'
+STRIPE_SECRET_KEY = "ghdxnmednskj"
