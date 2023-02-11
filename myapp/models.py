@@ -16,7 +16,7 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse_lazy('myapp:products')
+        return reverse_lazy('myapp:products') #return products
 
 class OrderDetail(models.Model):
     customer_username = models.CharField(max_length=200)
