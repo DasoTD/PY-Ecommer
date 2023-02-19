@@ -5,6 +5,18 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.contrib.auth.models import User
 # Create your views here.
+import logging
+import ipaddress
+
+
+logger = logging.getLogger(__name__)
+
+def my_view(request):
+    logger.debug("This is a debug message")
+    logger.info("This is an info message")
+    logger.warning("This is a warning message")
+    logger.error("This is an error message")
+
 
 def register(request):
     if request.method =='POST':
@@ -20,6 +32,14 @@ def register(request):
 
 @login_required
 def profile(request):
+    logger.debug("This is a debug message")
+    print(request.user.id)
+    client_ip = request.META['REMOTE_ADDR']
+    ip = ipaddress.ip_address(client_ip)
+    print(ip)
+    # logger.info("This is an info message")
+    # logger.warning("This is a warning message")
+    # logger.error("This is an error message")
     return render(request, 'users/profile.html')
 
 @login_required
